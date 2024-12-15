@@ -1,0 +1,26 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build
+  args:
+  - 'build'
+  - '-t'
+  - 'europe-west1-docker.pkg.dev/cts01-shreyashree/web-app-repo/web-app:latest'
+  - '.'
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push
+  args:
+  - 'push'
+  - 'europe-west1-docker.pkg.dev/cts01-shreyashree/web-app-repo/web-app:latest'
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Deploy
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+         PROJECT=$$(gcloud config get-value core/project)
+         gke-gcloud-auth-plugin --version
+         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+         gcloud container clusters get-credentials "gke-cluster" --project "cts01-shreyashree"  --zone "europe-west1-b"
+         kubectl apply -f deploy.yaml
