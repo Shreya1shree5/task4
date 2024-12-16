@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: web-app
-          image: europe-west1-docker.pkg.dev/cts01-shreyashree/web-app-repo/web-app:latest
+          image: europe-west1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app:latest
           ports:
             - containerPort: 80
 ---
