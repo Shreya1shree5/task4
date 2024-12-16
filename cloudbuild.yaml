@@ -4,14 +4,14 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'us-central1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app:latest'
+  - 'us-central1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app-green:latest'
   - '.'
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Push
   args:
   - 'push'
-  - 'us-central1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app:latest'
+  - 'us-central1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app-green:latest'
 
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
