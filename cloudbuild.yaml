@@ -6,13 +6,17 @@ steps:
   - '-t'
   - 'us-central1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app:latest'
   - '.'
+options:
+  logging: CLOUD_LOGGING_ONLY
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Push
   args:
   - 'push'
   - 'us-central1-docker.pkg.dev/solid-altar-444910-c9/web-app-repo/web-app:latest'
-
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
 - name: 'gcr.io/cloud-builders/gcloud'
   id: Deploy
   entrypoint: 'bash'
@@ -24,3 +28,5 @@ steps:
          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
          gcloud container clusters get-credentials "my-gke-cluster111" --project "solid-altar-444910-c9"  --zone "us-central1-a"
          kubectl apply -f deploy.yaml
+options:
+  logging: CLOUD_LOGGING_ONLY
