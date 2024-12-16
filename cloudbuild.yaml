@@ -22,7 +22,7 @@ steps:
          PROJECT=$$(gcloud config get-value core/project)
          gke-gcloud-auth-plugin --version
          export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-         gcloud container clusters get-credentials "my-gke-cluster111" --project "solid-altar-444910-c9"  --zone "us-central1-a"
+         gcloud container clusters get-credentials "my-gke-cluster-111" --project "solid-altar-444910-c9"  --zone "us-central1-a"
          kubectl apply -f deploy.yaml
 options:
   logging: CLOUD_LOGGING_ONLY
